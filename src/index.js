@@ -1,7 +1,7 @@
 /*
  * Example showcasing real-time, partial data updates to Polar Heatmap.
  */
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 const { lightningChart, Themes, LUT, PalettedFill, regularColorSteps, SolidFill, ColorRGBA, PointShape } = lcjs
 
 const sensors = [
@@ -80,7 +80,6 @@ const polarHeatmap = polarChart
     })
     .setName('Heatmap')
     .setIntensityInterpolation('bilinear')
-    .setCursorInterpolationEnabled(true)
     .setHighlightOnHover(false)
 
 // This series is intended for helping understand the example. It displays the location of heatmap cells in the chart.
@@ -96,7 +95,6 @@ const cellLocationsSeries = polarChart
 
 const palette = new PalettedFill({
     lut: new LUT({
-        units: 'intensity',
         steps: regularColorSteps(0, 1, themeExamples.coldHotColorPalette, { alpha: 100 }),
         interpolate: true,
     }),
