@@ -53,7 +53,7 @@ const amplitudeStep = (amplitudeMax - amplitudeMin) / resolutionAnnuli
 const polarChart = lightningChart({
             resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
         }).Polar({
-    theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined
+    theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
 })
 
 const themeExamples = polarChart.getTheme().examples
