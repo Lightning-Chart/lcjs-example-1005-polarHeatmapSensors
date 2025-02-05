@@ -91,7 +91,7 @@ const cellLocationsSeries = polarChart
     .setPointShape(PointShape.Square)
     .setPointFillStyle(new SolidFill({ color: ColorRGBA(0, 0, 0, 100) }))
     .setCursorEnabled(false)
-    .setMouseInteractions(false)
+    .setPointerEvents(false)
 
 const palette = new PalettedFill({
     lut: new LUT({
