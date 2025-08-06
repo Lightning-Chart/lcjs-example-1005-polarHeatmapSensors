@@ -2,7 +2,7 @@
  * Example showcasing real-time, partial data updates to Polar Heatmap.
  */
 const lcjs = require('@lightningchart/lcjs')
-const { lightningChart, Themes, LUT, PalettedFill, regularColorSteps, SolidFill, ColorRGBA, PointShape } = lcjs
+const { lightningChart, Themes, LUT, PalettedFill, regularColorSteps, SolidFill, ColorRGBA, PointShape, emptyLine } = lcjs
 
 const sensors = [
     { angle: 0, amplitude: 0, value: Math.random() },
@@ -90,19 +90,20 @@ const cellLocationsSeries = polarChart
     .setPointSize(3)
     .setPointShape(PointShape.Square)
     .setPointFillStyle(new SolidFill({ color: ColorRGBA(0, 0, 0, 100) }))
+    .setPointStrokeStyle(emptyLine)
     .setCursorEnabled(false)
     .setPointerEvents(false)
 
+const lut = new LUT({
+    steps: regularColorSteps(0, 1, themeExamples.coldHotColorPalette, { alpha: 100 }),
+    interpolate: true,
+})
+
 const palette = new PalettedFill({
-    lut: new LUT({
-        steps: regularColorSteps(0, 1, themeExamples.coldHotColorPalette, { alpha: 100 }),
-        interpolate: true,
-    }),
+    lut,
 })
 polarHeatmap.setFillStyle(palette)
 polarChart.forEachAxis((axis) => axis.fit(false))
-
-const legend = polarChart.addLegendBox().add(polarChart)
 
 requestAnimationFrame(() => {
     const heatmapData = new Array(resolutionAnnuli).fill(0).map((_) => new Array(resolutionSectors).fill(0))
